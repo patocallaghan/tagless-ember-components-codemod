@@ -1,5 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`classic components adds a migration comment if component is using \`keyDown()\` 1`] = `
+"==========
+
+    export default Component.extend({
+      keyDown() {
+        console.log('Hello World!');
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      // CODE MIGRATION HINT: \`keyDown\` is not supported in Glimmer components. See TBC for more details on how to migrate.
+      keyDown() {
+        console.log('Hello World!');
+      }
+    });
+  
+~~~~~~~~~~
+<div ...attributes>
+  foo
+</div>
+=========="
+`;
+
+exports[`classic components adds a migration comment if component is using \`this.element\` 1`] = `
+"==========
+
+    export default Component.extend({
+      didInsertElement() {
+        console.log(this.element);
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      didInsertElement() {
+        // CODE MIGRATION HINT: \`this.element\` is not supported in Glimmer components. See TBC for more details on how to migrate.
+        console.log(this.element);
+      }
+    });
+  
+~~~~~~~~~~
+<div ...attributes>
+  foo
+</div>
+=========="
+`;
+
+exports[`classic components adds a migration comment if component is using \`this.elementId\` 1`] = `
+"==========
+
+    export default Component.extend({
+      didInsertElement() {
+        console.log(this.elementId);
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      didInsertElement() {
+        // CODE MIGRATION HINT: \`this.elementId\` is not supported in Glimmer components. See TBC for more details on how to migrate.
+        console.log(this.elementId);
+      }
+    });
+  
+~~~~~~~~~~
+<div ...attributes>
+  foo
+</div>
+=========="
+`;
+
 exports[`classic components basic 1`] = `
 "==========
 
@@ -280,6 +373,37 @@ foo
 <span ...attributes>
   foo
 </span>
+=========="
+`;
+
+exports[`classic components throws if component is using \`click()\` 1`] = `
+"==========
+
+    export default Component.extend({
+      click() {
+        console.log('Hello World!');
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      // CODE MIGRATION HINT: \`click\` is not supported in Glimmer components. See TBC for more details on how to migrate.
+      click() {
+        console.log('Hello World!');
+      }
+    });
+  
+~~~~~~~~~~
+<div ...attributes>
+  foo
+</div>
 =========="
 `;
 
