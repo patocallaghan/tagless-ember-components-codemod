@@ -190,7 +190,7 @@ exports[`classic components handles \`classNameBindings\` correctly 1`] = `
 "==========
 
     export default Component.extend({
-      classNameBindings: ['a:b', 'x:y:z', 'foo::bar', ':static'],
+      classNameBindings: ['a:b', 'x:y:z', 'foo::bar', ':static', 'isDragging'],
     });
   
 ~~~~~~~~~~
@@ -204,7 +204,7 @@ foo
     });
   
 ~~~~~~~~~~
-<div class=\\"{{if this.a \\"b\\"}} {{if this.x \\"y\\" \\"z\\"}} {{unless this.foo \\"bar\\"}} static\\" ...attributes>
+<div class=\\"{{if this.a \\"b\\"}} {{if this.x \\"y\\" \\"z\\"}} {{unless this.foo \\"bar\\"}} static {{this.isDragging}}\\" ...attributes>
   foo
 </div>
 =========="
