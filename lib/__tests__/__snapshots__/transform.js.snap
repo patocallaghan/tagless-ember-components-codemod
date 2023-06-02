@@ -1,36 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`classic components adds a migration comment if component is using \`keyDown()\` 1`] = `
-"==========
-
-    export default Component.extend({
-      keyDown() {
-        console.log('Hello World!');
-      },
-    });
-  
-~~~~~~~~~~
-foo
-~~~~~~~~~~
- => tagName: div
-~~~~~~~~~~
-
-    export default Component.extend({
-      tagName: \\"\\",
-
-      // CODE MIGRATION HINT: \`keyDown\` is not supported in Glimmer components. See TBC for more details on how to migrate.
-      keyDown() {
-        console.log('Hello World!');
-      }
-    });
-  
-~~~~~~~~~~
-<div ...attributes>
-  foo
-</div>
-=========="
-`;
-
 exports[`classic components adds a migration comment if component is using \`this.element\` 1`] = `
 "==========
 
@@ -134,6 +103,112 @@ export default Component.extend({
   foo
 
   bar
+</div>
+=========="
+`;
+
+exports[`classic components event handlers Adds action to existing @ember/object import 1`] = `
+"==========
+
+    import { get } from '@ember/object';
+
+    export default Component.extend({
+      click() {
+        console.log('Hello World!');
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    import { get, action } from '@ember/object';
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      onClick: action(function() {
+        console.log('Hello World!');
+      })
+    });
+  
+~~~~~~~~~~
+<div ...attributes {{on \\"click\\" this.onClick}}>
+  foo
+</div>
+=========="
+`;
+
+exports[`classic components event handlers Migrates event handlers to the template 1`] = `
+"==========
+
+    export default Component.extend({
+      keyDown(event) {
+        console.log(event);
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    import { action } from \\"@ember/object\\";
+    export default Component.extend({
+      tagName: \\"\\",
+
+      onKeyDown: action(function(event) {
+        console.log(event);
+      })
+    });
+  
+~~~~~~~~~~
+<div ...attributes {{on \\"keydown\\" this.onKeyDown}}>
+  foo
+</div>
+=========="
+`;
+
+exports[`classic components event handlers Migrates multiple event handlers to the template 1`] = `
+"==========
+
+    import { action } from '@ember/object';
+
+    export default Component.extend({
+      async click() {
+        console.log('Hello World!');
+      },
+      keyDown() {
+        console.log('Hello World!');
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    import { action } from '@ember/object';
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      onClick: action(async function() {
+        console.log('Hello World!');
+      }),
+
+      onKeyDown: action(function() {
+        console.log('Hello World!');
+      })
+    });
+  
+~~~~~~~~~~
+<div ...attributes {{on \\"click\\" this.onClick}} {{on \\"keydown\\" this.onKeyDown}}>
+  foo
 </div>
 =========="
 `;
@@ -373,37 +448,6 @@ foo
 <span ...attributes>
   foo
 </span>
-=========="
-`;
-
-exports[`classic components throws if component is using \`click()\` 1`] = `
-"==========
-
-    export default Component.extend({
-      click() {
-        console.log('Hello World!');
-      },
-    });
-  
-~~~~~~~~~~
-foo
-~~~~~~~~~~
- => tagName: div
-~~~~~~~~~~
-
-    export default Component.extend({
-      tagName: \\"\\",
-
-      // CODE MIGRATION HINT: \`click\` is not supported in Glimmer components. See TBC for more details on how to migrate.
-      click() {
-        console.log('Hello World!');
-      }
-    });
-  
-~~~~~~~~~~
-<div ...attributes>
-  foo
-</div>
 =========="
 `;
 
