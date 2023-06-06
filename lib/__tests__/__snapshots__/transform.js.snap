@@ -1,5 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`classic components adds a migration comment if component is using \`jQuery\` 1`] = `
+"==========
+
+    import $ from 'jquery';
+
+    export default Component.extend({
+      didInsertElement() {
+        console.log($('.test'));
+      },
+    });
+  
+~~~~~~~~~~
+foo
+~~~~~~~~~~
+ => tagName: div
+~~~~~~~~~~
+
+    import $ from 'jquery';
+
+    export default Component.extend({
+      tagName: \\"\\",
+
+      didInsertElement() {
+        // CODE MIGRATION HINT: \`jQuery\` should not be used in Glimmer components. See TBC for more details on how to migrate.
+        console.log($('.test'));
+      }
+    });
+  
+~~~~~~~~~~
+<div ...attributes>
+  foo
+</div>
+=========="
+`;
+
 exports[`classic components adds a migration comment if component is using \`this.element\` 1`] = `
 "==========
 
