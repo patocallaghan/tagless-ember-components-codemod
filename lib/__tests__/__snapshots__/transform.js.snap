@@ -23,7 +23,7 @@ foo
       tagName: \\"\\",
 
       didInsertElement() {
-        // CODE MIGRATION HINT: \`jQuery\` should not be used in Glimmer components. See TBC for more details on how to migrate.
+        // CODE MIGRATION HINT: \`jQuery\` should not be used in Glimmer components. For more details on how to migrate see https://go.inter.com/component-jquery.
         console.log($('.test'));
       }
     });
@@ -54,7 +54,7 @@ foo
       tagName: \\"\\",
 
       didInsertElement() {
-        // CODE MIGRATION HINT: \`this.element\` is not supported in Glimmer components. See TBC for more details on how to migrate.
+        // CODE MIGRATION HINT: \`this.element\` is not supported in Glimmer components. For more details on how to migrate see https://go.inter.com/component-element.
         console.log(this.element);
       }
     });
@@ -85,7 +85,7 @@ foo
       tagName: \\"\\",
 
       didInsertElement() {
-        // CODE MIGRATION HINT: \`this.elementId\` is not supported in Glimmer components. See TBC for more details on how to migrate.
+        // CODE MIGRATION HINT: \`this.elementId\` is not supported in Glimmer components. For more details on how to migrate see https://go.inter.com/component-element.
         console.log(this.elementId);
       }
     });
